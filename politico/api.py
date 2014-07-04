@@ -12,7 +12,13 @@ api = Blueprint('api', __name__, template_folder='templates')
 
 @api.record
 def get_config(setup_state):
-  """Get's the main app's configuration."""
+  """Get's the main app's configuration.
+
+  The OpenSecrets.org API client requires a key that we load at startup and
+  store in the application's configuration. We store it here so we can use the
+  client here.
+
+  """
   global config
   config = setup_state.app.config
 
