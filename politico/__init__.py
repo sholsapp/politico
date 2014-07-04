@@ -15,6 +15,7 @@ app = Flask(__name__)
 # to have API live in the same url namespace.
 app.register_blueprint(api, url_prefix='/api')
 
+
 manager = APIManager(app, flask_sqlalchemy_db=db)
 manager.create_api(Messages, methods=['GET', 'POST'])
 

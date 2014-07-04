@@ -1,12 +1,30 @@
 {% extends "layout.html" %}
 
 {% block content %}
+
+
 <div class="alert alert-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
 <strong>Yay!</strong> Everything looks like it is working.
 </div>
 
-<h1>
-Hello, world!
-</h1>
+<!-- Use datamaps - https://github.com/markmarkoh/datamaps - for plotting --!>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="{{ url_for('static', filename='js/jquery-2.1.1.js') }}"></script>
+<script src="{{ url_for('static', filename='js/datamaps.usa.min.js') }}"></script>
+<div id="container" style="position: relative; width: 1000px; height: 600px;"></div>
+<script>
+    var map = new Datamap({
+      element: document.getElementById('container'),
+      scope: 'usa',
+      done: function(datamap) {
+        datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+          alert(geography.properties.name);
+        });
+      }
+    });
+</script>
+
 {% endblock %}
