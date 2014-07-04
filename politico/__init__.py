@@ -8,7 +8,6 @@ from politico.model import make_conn_str, db, Messages
 
 app = Flask(__name__)
 
-app.config_obj = {}
 
 # Note, this url namespace also exists for the Flask-Restless
 # extension and is where CRUD interfaces live, so be careful not to
@@ -34,8 +33,3 @@ def init_webapp():
 @app.route('/')
 def index():
   return render_template('index.html')
-
-
-@app.route('/state/<state>', methods=['GET'])
-def state(state):
-  return jsonify({'state': state})

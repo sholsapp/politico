@@ -1,0 +1,5 @@
+[politico]
+  api_key=string(default=foo)
+  scheme=string(default=foo)
+  netloc=string(default=foo)
+  api_path=string(default=foo)

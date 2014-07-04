@@ -14,6 +14,7 @@
 from configobj import ConfigObj
 from validate import Validator
 from flask.ext.script import Manager
+from flask.ext.script import Manager, Command, Option
 
 from politico import app, init_webapp
 
@@ -22,17 +23,12 @@ manager = Manager(app)
 
 
 @manager.command
-def runserver(*args, **kwargs):
+def runserver(config):
   """Override default `runserver` to init webapp before running."""
-  app = init_webapp()
-  # TODO(sholsapp): parameterize this, but don't clobber the *args, **kwargs
-  # space, because it's annoying to have to pass these in to the `run` method.
-  config = ConfigObj('config/sample.config', configspec='config/sample.configspec')
-  app.config_obj = config
-  print app.config_obj
-  print args
-  print kwargs
-  app.run(*args, **kwargs)
+  config_obj = ConfigObj(config, configspec='config/politico.configspec')
+  app.config.update(config_obj)
+  init_webapp()
+  app.run(debug=True)
 
 
 if __name__ == "__main__":
