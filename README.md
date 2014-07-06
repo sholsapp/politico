@@ -23,6 +23,16 @@ Flask-Script that looks like:
 
 ## deployment
 
+### virtualenv
+
+Bootstrap your environment using virtualenv and pip:
+
+```bash
+mkdir ~/.virtualenvs
+virtualenv ~/.virtualenvs/politico
+source ~/.virtualenvs/bin/activate
+```
+
 ### local
 
 You can run *politico* yourself locally by running:
