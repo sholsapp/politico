@@ -17,12 +17,13 @@ setup(
   url='http://www.flask.com',
   packages=['politico'],
   install_requires=[
-    'configobj',
     'Flask',
     'Flask-Bootstrap',
-    'Flask-Script',
-    'Flask-SQLAlchemy',
     'Flask-Restless',
+    'Flask-SQLAlchemy',
+    'Flask-Script',
+    'configobj',
     'gunicorn',
+    'requests',
   ],
 )
