@@ -1,7 +1,11 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, abort, jsonify
+import logging
 import requests
 import urllib
 import urlparse
+
+
+log = logging.getLogger(__name__)
 
 
 config = None
@@ -46,7 +50,21 @@ def legislators(state):
     None,
   ))
 
-  return jsonify({
-    'state': state,
-    'legislators': requests.get(url).json()['response']['legislator'],
-  })
+  rsp = requests.get(url)
+
+  if rsp.ok:
+    legislators = []
+    # This deconstructs the response from the OpenSecrets.org response, which
+    # uses some funky not-especially-help keys.
+    for legislator in rsp.json()['response']['legislator']:
+      legislators.append(legislator['@attributes'])
+    return jsonify({
+      'state': state,
+      'legislators': legislators,
+    })
+
+  else:
+    log.info('OpenSecrets.org responded with a %s!', rsp.status_code)
+    # TODO(sholsapp): add paradigm for graceful API failure, we want to return
+    # something nice to our client, not just 500.
+    abort(500)
