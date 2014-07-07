@@ -14,14 +14,31 @@
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script src="{{ url_for('static', filename='js/jquery-2.1.1.js') }}"></script>
 <script src="{{ url_for('static', filename='js/datamaps.usa.min.js') }}"></script>
-<div id="container" style="position: relative; width: 1000px; height: 600px;"></div>
+
+
+<div class="row">
+  <div id="map-div" class="col-md-6">
+     <div id="map-container" style="position: relative; width: 500px; height: 300px;"></div>
+  </div>
+  <div id="explore-div" class="col-md-6">
+  </div>
+</div>
+
 <script>
+
+  function getStateLegislators(stateId) {
+    $.get("api/legislators/" + stateId,
+      function(data) {
+        $("#explore-div").html(JSON.stringify(data));
+      });
+    }
+
     var map = new Datamap({
-      element: document.getElementById('container'),
+      element: document.getElementById('map-container'),
       scope: 'usa',
       done: function(datamap) {
         datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-          alert(geography.properties.name);
+          getStateLegislators(geography.id);
         });
       }
     });
