@@ -16,20 +16,44 @@
 <script src="{{ url_for('static', filename='js/datamaps.usa.min.js') }}"></script>
 
 
+<h1>Politico</h1>
+
 <div class="row">
-  <div id="map-div" class="col-md-6">
+  <div id="map-div" class="col-md-4">
      <div id="map-container" style="position: relative; width: 500px; height: 300px;"></div>
   </div>
-  <div id="explore-div" class="col-md-6">
+  <div id="explore-div" class="col-md-8">
+    <table id="explore-table" class="table table-striped table-compact">
+      <thead>
+        <th>Legislator</th>
+        <th>Election Year</th>
+        <th>Twitter</th>
+        <th>Facebook</th>
+      </thead>
+      <tbody>
+      </tbody>
+      </table>
   </div>
 </div>
 
 <script>
 
   function getStateLegislators(stateId) {
+    $("#explore-div #explore-table tbody").html("");
     $.get("api/legislators/" + stateId,
       function(data) {
-        $("#explore-div").html(JSON.stringify(data));
+        data['legislators'].forEach(
+          function(legislator) {
+            console.log(JSON.stringify(legislator));
+            $("#explore-div #explore-table tbody").append(
+            "<tr>" +
+            "<td><a href=\"" + legislator["website"] + "\">" + legislator["firstlast"] + "</a></td>" +
+            "<td>" + legislator["first_elected"] + "</td>" +
+            "<td>" + legislator["twitter_id"] + "</td>" +
+            "<td>" + legislator["facebook_id"] + "</td>" +
+            "</tr>"
+            );
+          });
       });
     }
 
