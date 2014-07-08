@@ -7,11 +7,15 @@ OpenSecrets.org.
 
 ## configuration
 
+You'll need to obtain your own application keys for the API that we use in
+politico.
+
+### OpenSecrets.org
+
 You'll need to obtain your own OpenSecrets.org API key before you can run
 *politico* yourself. You can sign up at
-https://www.opensecrets.org/resources/create/apis.php. It only takes a few
-minutes. When you're done, create a configuration file that you can pass to
-Flask-Script that looks like:
+https://www.opensecrets.org/resources/create/apis.php. When you're done, add a
+config block like the following to your config file.
 
 ```python
 [opensecrets]
@@ -19,6 +23,21 @@ Flask-Script that looks like:
   scheme = 'http'
   netloc = 'opensecrets.org'
   api_path = '/api'
+```
+
+### Twitter
+
+You'll need to obtain your own Twitter API key before you can run *politico
+yourself. You can sign up at https://apps.twitter.com/. When you're done, add a
+config block like the following to your config file.
+
+```python
+[twitter]
+  consumer_key = 'your-consumer-key'
+  consumer_secret = 'your-consumer-secret'
+  scheme='https'
+  netloc = 'api.twitter.com'
+  api_path = '/'
 ```
 
 ## deployment
