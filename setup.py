@@ -22,6 +22,7 @@ setup(
     'Flask-Restless',
     'Flask-SQLAlchemy',
     'Flask-Script',
+    'brownie',
     'configobj',
     'gunicorn',
     'requests',

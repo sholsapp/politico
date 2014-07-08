@@ -3,3 +3,10 @@
   scheme=string(default=foo)
   netloc=string(default=foo)
   api_path=string(default=foo)
+
+[twitter]
+  consumer_key=string(default=foo)
+  consumer_secret=string(default=foo)
+  scheme=string(default=foo)
+  netloc=string(default=foo)
+  api_path=string(default=foo)
