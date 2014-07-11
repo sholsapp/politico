@@ -3,7 +3,7 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.restless import APIManager
 
 from politico.apis.osid import osid_blueprint
-from politico.model import make_conn_str, db, Messages
+from politico.model import make_conn_str, db, Person, Role, TwitterProfile
 
 
 app = Flask(__name__)
@@ -13,7 +13,9 @@ app.register_blueprint(osid_blueprint, url_prefix='/api/osid')
 
 
 manager = APIManager(app, flask_sqlalchemy_db=db)
-manager.create_api(Messages, methods=['GET', 'POST'])
+manager.create_api(Person, methods=['GET'])
+manager.create_api(Role, methods=['GET'])
+manager.create_api(TwitterProfile, methods=['GET'])
 
 
 Bootstrap(app)
