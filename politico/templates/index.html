@@ -42,7 +42,7 @@
 
   function getStateLegislators(stateId) {
     $("#explore-div #explore-table tbody").html("");
-    $.get("api/legislators/" + stateId,
+    $.get("api/osid/legislators/" + stateId,
       function(data) {
         data['legislators'].forEach(
           function(legislator) {

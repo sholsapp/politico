@@ -11,10 +11,10 @@ log = logging.getLogger(__name__)
 config = None
 
 
-api = Blueprint('api', __name__, template_folder='templates')
+osid_blueprint = Blueprint('osid_blueprint', __name__, template_folder='templates')
 
 
-@api.record
+@osid_blueprint.record
 def get_config(setup_state):
   """Get's the main app's configuration.
 
@@ -27,7 +27,7 @@ def get_config(setup_state):
   config = setup_state.app.config
 
 
-@api.route('/legislators/<state>')
+@osid_blueprint.route('/legislators/<state>')
 def legislators(state):
 
   query = urllib.urlencode({

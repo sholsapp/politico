@@ -1,16 +1,33 @@
 # politico
 
 A visual tool for finding, following and contacting legislators powered by
-OpenSecrets.org.
+https://www.govtrack.us/.
 
 # developers
+
+This tool is mostly a mashup of several API out there today. This section
+discusses those API, viz., how to configure your *politico* instance to use
+your own API keys.
 
 ## configuration
 
 You'll need to obtain your own application keys for the API that we use in
 politico.
 
+### GovTrack.us
+
+This API is the most extensive and useful API for general purprose information
+about legislators and legislation, and provides primary keys to other API's
+data sets like OpenSecrets.org.
+
+You'll need to do nothing to start using GovTrack.us! Their API is free and
+open for use for all. Check out the documentation at
+https://www.govtrack.us/developers.
+
 ### OpenSecrets.org
+
+This API is one that provides information about where legislators are receiving
+funding from.
 
 You'll need to obtain your own OpenSecrets.org API key before you can run
 *politico* yourself. You can sign up at
@@ -26,6 +43,9 @@ config block like the following to your config file.
 ```
 
 ### Twitter
+
+This API is one that gives us access to public Twitter users' information, like
+how active they are or how many statuses they've tweeted.
 
 You'll need to obtain your own Twitter API key before you can run *politico
 yourself. You can sign up at https://apps.twitter.com/. When you're done, add a
