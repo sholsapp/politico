@@ -61,4 +61,7 @@ class TwitterClient(object):
       headers={'Authorization': 'Bearer %s' % self.access_token},
     )
 
+    # TODO(sholsapp): save the 'x-rate-limit-remaining' header and warn/block
+    # calls against the API so that we don't end up getting rate limited.
+
     return rsp.json()
