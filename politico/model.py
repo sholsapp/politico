@@ -13,8 +13,8 @@ class Person(db.Model):
   firstname = db.Column(db.Unicode(64))
   lastname = db.Column(db.Unicode(64))
   twitterid = db.Column(db.Unicode(64))
-  roles = db.relationship('Role')
-  twitter_profile = db.relationship('TwitterProfile', uselist=False, backref="person")
+  roles = db.relationship('Role', backref='person')
+  twitter_profile = db.relationship('TwitterProfile', uselist=False, backref='person')
 
 
 class Role(db.Model):
